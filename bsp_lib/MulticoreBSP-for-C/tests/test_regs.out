@@ -1,0 +1,7 @@
+Testing multiple calls to bsp_push_reg and bsp_pop_reg: both multiple addresses and multiple registrations of the same address; initialization is done, will now execute various variants...
+Single test: registered synced deregistered done.
+Horizontal test: registered synced deregistered done.
+Vertical test: registered synced deregistered done.
+Mixed test 1: registered synced deregistered done.
+Mixed test 2: registered synced deregistered done.
+Tests complete!

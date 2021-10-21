@@ -1,0 +1,33 @@
+
+Known issues (since version 2.0.4):
+
+- various utility functions that increase
+  capacity may deadlock if the target size
+  is more than half of SIZE_MAX.
+
+- BSMP hpmove may fail on non-Intel
+  architectures due to not aligning payloads
+  on int boundaries. Thanks to Wijnand
+  J. Suijlen (Huawei) for reporting!
+
+- Unable to build shared libraries when
+  cross-compiling for Windows. Please issue
+  `make library' to (successfully) build the
+  static version only.
+
+Known issues (since version 2.0.3):
+
+- when compiling on OS X using GCC, you may
+  need to replace `native' with `corei7' for
+  each of the -march / -mtune flags. This is
+  a GCC bug.
+
+- the automatically generated benchmark plots
+  in benchmarks/plot_results (by executing
+  cd benchmarks && make) cannot be properly
+  plotted by Octave 4.2.2 due to a bug in its
+  `legend' built-in script. (MATLAB works.)
+  
+- when compiling with Clang prior to version
+  4.0, (harmless) warnings will be displayed.
+

@@ -1,0 +1,21 @@
+
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := mcbsp
+LOCAL_CFLAGS := -O3 -funroll-loops -g -DNDEBUG
+LOCAL_SRC_FILES := bsp-active-hooks.c mcutil.c mcbsp.c bsp.c
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := mcbsp-debug
+LOCAL_CFLAGS := -O3 -funroll-loops -g -DNDEBUG -DMCBSP_MODE=2
+LOCAL_SRC_FILES := bsp.c
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := mcbsp-profile
+LOCAL_CFLAGS := -O3 -funroll-loops -g -DNDEBUG -DMCBSP_MODE=3
+LOCAL_SRC_FILES := bsp.c
+include $(BUILD_STATIC_LIBRARY)
+
