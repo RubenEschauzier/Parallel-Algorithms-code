@@ -31,7 +31,6 @@
 //     return isPrime;
 // }
 bool* sieve_non_even(int N){
-    // Error in this code!!!! Unneccesairy computations due to ordering of division and sqrt
     int size_non_even = ceil(N/2.0);
     bool *isPrime = malloc(sizeof(bool)*size_non_even);
 
@@ -43,6 +42,20 @@ bool* sieve_non_even(int N){
             for (int j=i+(i*2)+1; j < size_non_even; j+=(i*2)+1){
                 isPrime[j] = false;
             }
+        }
+    }
+    int num_primes_found = 1;
+    for (int k=0; k < ceil(N/2.0); ++k){
+        num_primes_found += isPrime[k];
+    }
+    printf("Found %d primes \n", num_primes_found);
+
+    int found_primes[num_primes_found];
+    int index_prime = 1;
+    for (int i=0; i < ceil(N/2.0); ++i){
+        if(isPrime[i]){
+            found_primes[index_prime] = (i*2)+1;
+            index_prime += 1;
         }
     }
     return isPrime;
@@ -60,6 +73,7 @@ bool* sieve(int N){
             }
         }
     }
+    
     return isPrime;
 }
 
@@ -126,15 +140,21 @@ int test_validity( bool* (*passed_sieve) (int)){
 }
 
 void main(int argc, char*argv[]){
-    int limit = 1000;
+    int limit = pow(2,25);
     bool pattern[2] = {false, true};
-    // sieve_non_even(limit, pattern);
-    time_sieve(10000, 100000);    
-    int outcome = test_validity(sieve_non_even);
-    if(outcome==0){
-        printf("Find Primes(N=%d): PASSED. \n", test_range);
-    }
-    else{
-        printf("Find Primes(N=%d): FAILED. \n", test_range);
-    }
+    clock_t t0 = clock();
+
+    sieve_non_even(limit);
+
+    clock_t t1 = clock();
+    printf("Time spent %f", (double)(t1 - t0)/CLOCKS_PER_SEC);
+
+    //time_sieve(10000, limit);    
+    // int outcome = test_validity(sieve_non_even);
+    // if(outcome==0){
+    //     printf("Find Primes(N=%d): PASSED. \n", test_range);
+    // }
+    // else{
+    //     printf("Find Primes(N=%d): FAILED. \n", test_range);
+    // }
 }
